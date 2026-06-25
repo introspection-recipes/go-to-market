@@ -1,0 +1,25 @@
+{
+  "name": "@introspection-recipes/go-to-market",
+  "version": "0.1.0",
+  "description": "Go-to-market recipe that qualifies inbound leads, researches accounts, drafts outbound, and publishes account intelligence.",
+  "type": "module",
+  "license": "Apache-2.0",
+  "peerDependencies": {
+    "@earendil-works/pi-agent-core": "*",
+    "@earendil-works/pi-ai": "*",
+    "@earendil-works/pi-coding-agent": "*",
+    "typebox": "*"
+  },
+  "pi": {
+    "agents": [
+      "agents/*.yaml"
+    ],
+    "skills": [
+      "skills/**/SKILL.md"
+    ],
+    "extensions": [
+      "extensions/*.ts",
+      "extensions/*/index.ts"
+    ]
+  }
+}

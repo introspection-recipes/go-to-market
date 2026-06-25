@@ -1,0 +1,6 @@
+name: gtm-agent
+runtime_name: gtm-agent
+path: .
+description: Go-to-market recipe for Pi and Introspection Cloud.
+runtime:
+  llm_mode: managed

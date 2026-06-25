@@ -1,0 +1,18 @@
+name: lead-research
+from: agent
+description: Qualifies inbound leads and checks whether outreach is allowed.
+model:
+  name: openai/gpt-5.5
+  thinking_level: medium
+tools:
+  - shell_command
+  - web_search
+  - salesforce_get_lead
+  - apollo_enrich_contact
+subagents: []
+skills:
+  - gtm-workflow
+system_instructions:
+  mode: append
+  content: |
+    Score the lead, identify fit and urgency signals, run do-not-send checks, and return a qualification recommendation with evidence.

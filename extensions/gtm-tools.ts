@@ -57,10 +57,11 @@ const extension: ExtensionFactory = (pi: ExtensionAPI) => {
       to_date: Type.Optional(Type.String({ description: "YYYY-MM-DD" })),
     }),
     async execute(_id, params) {
+      const baseUrl = (process.env.GONG_BASE_URL || "https://api.gong.io").replace(/\/$/, "");
       const auth = Buffer.from(`${required("GONG_ACCESS_KEY")}:${required("GONG_ACCESS_KEY_SECRET")}`).toString("base64");
-      const body = await jsonRequest("https://api.gong.io/v2/calls/extensive", {
+      const body = await jsonRequest(`${baseUrl}/v2/calls/extensive`, {
         method: "POST",
-        headers: { Authorization: `Basic ${auth}`, "Content-Type": "application/json" },
+        headers: { Authorization: `Basic ${auth}`, Accept: "application/json", "Content-Type": "application/json" },
         body: JSON.stringify({
           filter: {
             fromDateTime: params.from_date ? `${params.from_date}T00:00:00Z` : undefined,
@@ -80,15 +81,22 @@ const extension: ExtensionFactory = (pi: ExtensionAPI) => {
     description: "Enrich a contact with Apollo. Requires APOLLO_API_KEY.",
     parameters: Type.Object({
       email: Type.Optional(Type.String()),
+      name: Type.Optional(Type.String()),
       first_name: Type.Optional(Type.String()),
       last_name: Type.Optional(Type.String()),
-      organization_name: Type.Optional(Type.String()),
+      domain: Type.Optional(Type.String({ description: "Company domain, e.g. apollo.io." })),
     }),
     async execute(_id, params) {
       const url = new URL("https://api.apollo.io/api/v1/people/match");
       for (const [key, value] of Object.entries(params)) if (value) url.searchParams.set(key, String(value));
       const body = await jsonRequest(url.toString(), {
-        headers: { "Cache-Control": "no-cache", "x-api-key": required("APOLLO_API_KEY") },
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Cache-Control": "no-cache",
+          "Content-Type": "application/json",
+          "x-api-key": required("APOLLO_API_KEY"),
+        },
       });
       return { content: [{ type: "text", text: JSON.stringify(body, null, 2) }], details: body };
     },

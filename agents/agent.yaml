@@ -8,12 +8,10 @@ tools:
   - apply_patch
   - update_plan
   - web_search
-  - salesforce_get_lead
-  - salesforce_get_account
-  - gong_search_calls
-  - slack_post_draft
-  - apollo_enrich_contact
-  - bigquery_query
+  - mcp:slack/slack_send_message_draft
+  - mcp:bigquery/execute_sql_readonly
+  - mcp:bigquery/list_dataset_ids
+  - mcp:bigquery/list_table_ids
 subagents:
   - lead-research
   - sales-research
@@ -21,9 +19,12 @@ subagents:
 skills:
   - outbound-playbook
   - gtm-workflow
+  - salesforce-cli
+  - gong-api
+  - apollo-api
 system_instructions:
   mode: append
   content: |
     # Role: GTM orchestrator
 
-    Run do-not-send checks, gather CRM, Gong, and web context, draft relationship-aware outbound with rationale, post to Slack for rep approval.
+    Run do-not-send checks, gather verified public, warehouse, Salesforce, Gong, and Apollo context when configured, draft relationship-aware outbound with rationale, create Slack drafts for rep approval.

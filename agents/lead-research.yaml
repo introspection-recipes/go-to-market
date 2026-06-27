@@ -7,12 +7,12 @@ model:
 tools:
   - shell_command
   - web_search
-  - salesforce_get_lead
-  - apollo_enrich_contact
 subagents: []
 skills:
   - gtm-workflow
+  - salesforce-cli
+  - apollo-api
 system_instructions:
   mode: append
   content: |
-    Score the lead, identify fit and urgency signals, run do-not-send checks, and return a qualification recommendation with evidence.
+    Score the lead, identify fit and urgency signals, run do-not-send checks, use Salesforce CLI and Apollo API when configured, and return a qualification recommendation with evidence.

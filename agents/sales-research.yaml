@@ -1,19 +1,19 @@
 name: sales-research
 from: agent
-description: Researches CRM, calls, contacts, and market context for an account.
+description: Researches Salesforce, Gong, Apollo, public, warehouse, and user-provided context for an account.
 model:
   name: openai/gpt-5.5
   thinking_level: medium
 tools:
   - shell_command
   - web_search
-  - salesforce_get_account
-  - gong_search_calls
-  - apollo_enrich_contact
 subagents: []
 skills:
   - gtm-workflow
+  - salesforce-cli
+  - gong-api
+  - apollo-api
 system_instructions:
   mode: append
   content: |
-    Gather account context from CRM, calls, contact data, and public sources. Return facts, relationship signals, active initiatives, and caveats.
+    Gather account context from Salesforce CLI, Gong API, Apollo API, public sources, user-provided files, and warehouse results when configured. Return facts, relationship signals, active initiatives, and caveats.

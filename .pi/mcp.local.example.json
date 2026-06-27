@@ -1,0 +1,20 @@
+{
+  "servers": [
+    {
+      "id": "bigquery",
+      "transport": "streamable_http",
+      "url": "https://bigquery.googleapis.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${GOOGLE_OAUTH_ACCESS_TOKEN}"
+      }
+    },
+    {
+      "id": "slack",
+      "transport": "streamable_http",
+      "url": "${SLACK_MCP_URL}",
+      "headers": {
+        "Authorization": "Bearer ${SLACK_MCP_TOKEN}"
+      }
+    }
+  ]
+}

@@ -1,3 +1,7 @@
+---
+description: Use for drafting or reviewing outbound sales messages with evidence, rationale, risks, and approval routing.
+---
+
 # Outbound Playbook
 
 Use this skill when drafting or reviewing outbound sales messages.

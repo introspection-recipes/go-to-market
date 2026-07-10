@@ -4,14 +4,20 @@ model:
   name: openai/gpt-5.5
   thinking_level: medium
 tools:
+  - bash
   - shell_command
   - apply_patch
   - update_plan
   - web_search
-  - mcp:slack/slack_send_message_draft
-  - mcp:bigquery/execute_sql_readonly
-  - mcp:bigquery/list_dataset_ids
-  - mcp:bigquery/list_table_ids
+mcp:
+  slack:
+    include:
+      - slack_send_message_draft
+  bigquery:
+    include:
+      - execute_sql_readonly
+      - list_dataset_ids
+      - list_table_ids
 subagents:
   - lead-research
   - sales-research

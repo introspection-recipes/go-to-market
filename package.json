@@ -1,6 +1,6 @@
 {
   "name": "@introspection-recipes/go-to-market",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Go-to-market recipe that qualifies inbound leads, researches accounts through MCP plus CLI/API fallbacks, drafts outbound, and publishes account intelligence.",
   "type": "module",
   "license": "Apache-2.0",
@@ -10,7 +10,7 @@
     "prepare": "git config core.hooksPath .githooks || true"
   },
   "devDependencies": {
-    "@introspection-ai/pi-recipes": "^0.2.0"
+    "@introspection-ai/pi-recipes": "^0.6.0"
   },
   "peerDependencies": {
     "@earendil-works/pi-agent-core": "*",
@@ -35,7 +35,7 @@
           "id": "bigquery",
           "required": false,
           "tools": {
-            "allow": [
+            "include": [
               "execute_sql_readonly",
               "get_table_info",
               "list_dataset_ids",
@@ -47,7 +47,7 @@
           "id": "slack",
           "required": false,
           "tools": {
-            "allow": [
+            "include": [
               "slack_send_message_draft"
             ]
           }

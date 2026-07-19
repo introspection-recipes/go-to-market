@@ -93,3 +93,17 @@ export PARALLEL_API_KEY=...
 ```
 
 Nothing is sent externally by default except configured BigQuery read-only queries, Salesforce CLI queries, Gong/Apollo API reads, web search, and Slack approval drafts through `slack_send_message_draft`.
+
+## Validating Locally
+
+CI validates every push with [`pi-recipes-action`](https://github.com/introspection-org/pi-recipes-action). To run the same check before each commit, enable the bundled pre-commit hook once after cloning:
+
+```bash
+git config core.hooksPath .githooks   # or: npm install
+```
+
+Or run the check directly at any time:
+
+```bash
+npx -y -p @introspection-ai/pi-recipes@latest recipes check . --profile ci
+```
